@@ -1,33 +1,20 @@
 require "yaml"
 require "byebug"
 require 'sinatra/base'
+require "json"
+require "./fake_middleware"
 
 class FakeService < Sinatra::Base
+  use FakeMiddleware
 
-  def initialize(yaml_file = nil, app = nil)
-    file_path = yaml_file || File.expand_path('../reqres.yml', __FILE__)
-    self.class.define_actions(file_path)
-    super(app)
+
+  def equal_json_bodies?(expected_body, body)
+    #puts expected_body
+    #puts body
+    #puts self
+    #puts self.inspect
+    JSON.parse(expected_body) == JSON.parse(body)
   end
-
-  def self.define_actions(file_path)
-    hash = YAML.load(File.read(file_path))
-
-    hash.each do |k, v|
-      v.each do |key, value|
-        expected_request = value["request"]
-        expected_response = value["response"]
-        puts expected_request["method"].downcase
-        puts expected_request["full_path"]
-        send(expected_request["method"].downcase, expected_request["full_path"], provides: :json) do
-          pass unless expected_request["body"] == request.body.read
-          expected_response["body"]
-          status expected_response["code"]
-        end
-      end
-    end
-  end
-
 
   run! if app_file == $0
 end
