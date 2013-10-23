@@ -5,4 +5,4 @@ require 'minitest/pride'
 require 'test/unit'
 require 'rack/test'
 
-require File.expand_path '../../fake_service.rb', __FILE__
+require File.expand_path '../../lib/fake_service.rb', __FILE__

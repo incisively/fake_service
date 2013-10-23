@@ -2,10 +2,10 @@ require File.expand_path '../test_helper.rb', __FILE__
 
 class FakeServiceTest < MiniTest::Unit::TestCase
   include Rack::Test::Methods
-  FakeService.set(:file_path, File.expand_path('../test.yml', __FILE__))
+  FakeService::Server.set(:file_path, File.expand_path('../test.yml', __FILE__))
 
   def app
-    FakeService
+    FakeService::Server
   end
 
   def valid_header

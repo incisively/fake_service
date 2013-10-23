@@ -1,8 +1,12 @@
 source 'https://rubygems.org'
 
-gem "rake"
-gem "sinatra"
-
-gem "rack-test"
-
-gem "byebug"
+# Specify your gem's dependencies in fake_service.gemspec
+gemspec
+#source 'https://rubygems.org'
+#
+#gem "rake"
+#gem "sinatra"
+#
+#gem "rack-test"
+#
+#gem "byebug"
