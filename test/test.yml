@@ -12,9 +12,9 @@ ManageFooTest:
       method: POST
       body: '{"name":"Bar","description":"FooBar"}'
       headers:
-        http_authorization: Token token="14d75ec70594d026de22f02502e74be9"
-        content_type: application/json
-        accept: application/json
+        HTTP_AUTHORIZATION: Token token="14d75ec70594d026de22f02502e74be9"
+        CONTENT_TYPE: application/json
+        ACCEPT: application/json
     response:
       code: '201'
       body: '{"id":974435878,"name":"Bar","description":"FooBar"}'

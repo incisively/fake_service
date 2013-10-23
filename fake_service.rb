@@ -14,7 +14,9 @@ class FakeService < Sinatra::Base
   end
 
   def right_header?(expected, actual)
-    expected["http_authorization"] == actual["HTTP_AUTHORIZATION"]
+    expected.inject(true) do |memo, (k,v)|
+      memo && v == actual[k]
+    end
   end
 
   def self.define_action!(expected_request, expected_response)

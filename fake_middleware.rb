@@ -5,7 +5,6 @@ class FakeMiddleware
 
   def define_actions
     unless @action_defined
-      puts "-----------define action-----------"
       hash = YAML.load(File.read(@file_path))
       hash.each do |k, v|
         v.each do |key, value|

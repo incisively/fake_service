@@ -45,8 +45,20 @@ class FakeServiceTest < MiniTest::Unit::TestCase
     assert_equal 404, last_response.status
   end
 
-  def test_wrong_authorization_header
-    header = valid_header.merge("HTTP_AUTHORIZATION" => "123")
+  def test_wrong_accept
+    header = valid_header.merge("ACCEPT" => "123")
+    post '/v1/foos', valid_body, header
+    assert_equal 404, last_response.status
+  end
+
+  def test_wrong_content_type
+    header = valid_header.merge("CONTENT_TYPE" => "123")
+    post '/v1/foos', valid_body, header
+    assert_equal 404, last_response.status
+  end
+
+  def test_when_one_header_is_missing
+    header = valid_header.delete_if{|k,v| k =="HTTP_AUTHORIZATION"}
     post '/v1/foos', valid_body, header
     assert_equal 404, last_response.status
   end
