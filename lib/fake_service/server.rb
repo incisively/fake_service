@@ -1,11 +1,12 @@
-require "yaml"
-require "byebug"
+require 'yaml'
 require 'sinatra/base'
-require "json"
+require 'json'
+require File.expand_path '../middleware', __FILE__
 
 module FakeService
   class Server < Sinatra::Base
-    set :file_path, File.expand_path('../reqres.yml', __FILE__)
+    #set this attribute from runner
+    #set :file_path, path_to_file
 
     use Middleware
 
@@ -32,7 +33,5 @@ module FakeService
         expected_response["body"]
       end
     end
-
-#    run! if app_file == $0
   end
 end
