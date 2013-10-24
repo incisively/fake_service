@@ -1,6 +1,8 @@
 # FakeService
 
-Fake service for reqres. It takes generated file by reqres, define actions and
+Fake service for [reqres](https://github.com/antonversal/reqres). 
+It takes generated file by [reqres](https://github.com/antonversal/reqres), 
+define actions and
 runs server.
 
 ## Installation
