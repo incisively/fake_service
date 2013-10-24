@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.expand_path("../../lib", __FILE__)
+
+require "fake_service"
+
+yaml_path = ARGV.shift
+
+unless yaml_path && File.exists?(yaml_path)
+  raise "Yaml file is not found! Please set yaml file: fake_service /pat/to/file."
+end
+
+FakeService::Server.set(:file_path, yaml_path)
+
+options = Rack::Server::Options.new.parse!(ARGV)
+options.merge!(app: FakeService::Server)
+Rack::Server.start(options)
