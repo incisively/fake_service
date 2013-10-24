@@ -1,6 +1,7 @@
 # FakeService
 
-TODO: Write a gem description
+Fake service for reqres. It takes generated file by reqres, define actions and
+runs server.
 
 ## Installation
 
@@ -18,7 +19,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ fake_service path/to/file
+
+fake_service behaves like Rack::Server and can accept different options:
+
+    $ fake_service path/to/file -D -p 4567 -P path/to/pid
 
 ## Contributing
 
