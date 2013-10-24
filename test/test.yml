@@ -16,5 +16,16 @@ ManageFooTest:
         CONTENT_TYPE: application/json
         ACCEPT: application/json
     response:
+      headers:
+        X-Frame-Options: SAMEORIGIN
+        X-XSS-Protection: 1; mode=block
+        X-Content-Type-Options: nosniff
+        X-UA-Compatible: chrome=1
+        Location: http://www.example.com/v1/foos
+        Content-Type: text/html; charset=utf-8
+        ETag: '"3ac3a959a1a3466cd1a1e4f5939e339b"'
+        Cache-Control: max-age=0, private, must-revalidate
+        X-Request-Id: 45efbba1-a3b9-4651-81a3-819290570a80
+        X-Runtime: '0.028181'
       code: '201'
       body: '{"id":974435878,"name":"Bar","description":"FooBar"}'

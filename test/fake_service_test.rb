@@ -58,8 +58,26 @@ class FakeServiceTest < MiniTest::Unit::TestCase
   end
 
   def test_when_one_header_is_missing
-    header = valid_header.delete_if{|k,v| k =="HTTP_AUTHORIZATION"}
+    header = valid_header.delete_if { |k, v| k =="HTTP_AUTHORIZATION" }
     post '/v1/foos', valid_body, header
     assert_equal 404, last_response.status
+  end
+
+  def test_haders_in_responce
+    post '/v1/foos', valid_body, valid_header
+    headers = {
+        "X-Frame-Options" => "SAMEORIGIN",
+        "X-XSS-Protection" => "1; mode=block",
+        "X-Content-Type-Options" => "nosniff",
+        "X-UA-Compatible" => "chrome=1",
+        "Location" => "http://www.example.com/v1/foos",
+        "Content-Type" => "text/html; charset=utf-8",
+        "ETag" => "\"3ac3a959a1a3466cd1a1e4f5939e339b\"",
+        "Cache-Control" => "max-age=0, private, must-revalidate",
+        "X-Request-Id" => "45efbba1-a3b9-4651-81a3-819290570a80",
+        "X-Runtime" => "0.028181",
+        "Content-Length" => "52"
+    }
+    assert_equal headers, last_response.headers
   end
 end

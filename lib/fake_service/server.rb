@@ -29,6 +29,7 @@ module FakeService
       send(action, url, provides: :json) do
         pass unless right_header?(expected_request["headers"], request.env)
         pass unless equal_json_bodies?(expected_request["body"], request.body.read)
+        headers expected_response["headers"]
         status expected_response["code"]
         expected_response["body"]
       end
